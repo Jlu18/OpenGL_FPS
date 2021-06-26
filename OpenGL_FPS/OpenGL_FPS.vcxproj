@@ -42,9 +42,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{4fa9d7b4-d367-4852-b8f6-49ea21c89c0a}</ProjectGuid>
-    <RootNamespace>_4MBGameJam</RootNamespace>
+    <RootNamespace>_OpenGL_FPS</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>4MBGameJam</ProjectName>
+    <ProjectName>OpenGL_FPS</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
