@@ -18,8 +18,6 @@ private:
     Camera cam; //temp;
     bool keydown;
 
-    bool press[4]; //0 = forward; 1=backward; 2=right; 3=left;
-
     Uint32 lastTime, currentTime;
     float deltaTime() {
         currentTime = SDL_GetTicks();

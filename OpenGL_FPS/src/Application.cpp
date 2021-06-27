@@ -14,10 +14,6 @@
 Application::Application() : running(false), window(NULL), surface(NULL), context(NULL) {
     lastTime = currentTime = 0;
     keydown = false;
-    press[0] = false;
-    press[1] = false;
-    press[2] = false;
-    press[3] = false;
 };
 
 bool Application::OnInit() {
@@ -61,6 +57,8 @@ bool Application::OnInit() {
         std::cout << "Warning: Unable to set VSync! SDL Error: " <<  SDL_GetError() << std::endl;
     }
 
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+
     return true;
 }
 
@@ -75,13 +73,13 @@ void Application::OnEvent(SDL_Event* event) {
                 switch (event->key.keysym.sym)
                 {
                 case SDLK_w:
-                case SDLK_UP:       press[0] = true; break;
+                case SDLK_UP:       cam.ToggleMove(Direction::FORWARD,true); break;
                 case SDLK_s:
-                case SDLK_DOWN:     press[1] = true; break;
+                case SDLK_DOWN:     cam.ToggleMove(Direction::BACKWARD, true); break;
                 case SDLK_a:
-                case SDLK_LEFT:     press[2] = true; break;
+                case SDLK_LEFT:     cam.ToggleMove(Direction::LEFT, true); break;
                 case SDLK_d:
-                case SDLK_RIGHT:    press[3] = true; break;
+                case SDLK_RIGHT:    cam.ToggleMove(Direction::RIGHT, true); break;
                 }
             }
             break;
@@ -89,16 +87,21 @@ void Application::OnEvent(SDL_Event* event) {
             if (!event->key.repeat) {
                 switch (event->key.keysym.sym)
                 {
-                case SDLK_w:    
-                case SDLK_UP:       press[0] = false; break;
-                case SDLK_s:   
-                case SDLK_DOWN:     press[1] = false; break;
+                case SDLK_w:
+                case SDLK_UP:       cam.ToggleMove(Direction::FORWARD, false); break;
+                case SDLK_s:
+                case SDLK_DOWN:     cam.ToggleMove(Direction::BACKWARD, false); break;
                 case SDLK_a:
-                case SDLK_LEFT:     press[2] = false; break;
+                case SDLK_LEFT:     cam.ToggleMove(Direction::LEFT, false); break;
                 case SDLK_d:
-                case SDLK_RIGHT:    press[3] = false; break;
+                case SDLK_RIGHT:    cam.ToggleMove(Direction::RIGHT, false); break;
                 }
             }
+            break;
+        case SDL_MOUSEMOTION:
+            //std::cout << event->motion.xrel << std::endl;
+            cam.Rotate(event->motion.xrel, event->motion.yrel, true);
+            break;
     }
 }
 
@@ -132,50 +135,36 @@ int Application::OnExecute() {
     std::cout << "Status: Using Renderer " << glGetString(GL_RENDERER) << std::endl;
     std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
 
-    glViewport(0, 0, 640, 480);
-    /* Tell GL to only draw onto a pixel if the shape is closer to the viewer */
-    //glEnable(GL_DEPTH_TEST); //Enable depth-testing
-    //glDepthFunc(GL_LESS); // Depth-testing interprets a smaller value as "closer"
     Shader basic_shader = Shader("./res/shader/Basic.shader");
     Box b = Box(&basic_shader);
     Box b2 = Box(&basic_shader);
-    //Square s = Square(&basic_shader);
-
-    std::cout << "Start Game Loop" << std::endl;
-
-    glm::mat4 proj_matrix = glm::perspective(glm::radians(60.f),640.f/480.f,0.1f,100.f);
+    b2.move(0.5, 0, -0.5);    //offset second box
     
+    /* Tell GL to only draw onto a pixel if the shape is closer to the viewer */
+    //glEnable(GL_DEPTH_TEST); //Enable depth-testing
+    //glDepthFunc(GL_LESS); // Depth-testing interprets a smaller value as "closer"
+    glViewport(0, 0, 640, 480);
+
     float angle = 0;
-    //SDL Event 
-    SDL_Event Event;
-    
-    b2.move(0.5, 0, -0.5);
+    glm::mat4 proj_matrix = glm::perspective(glm::radians(60.f), 640.f / 480.f, 0.1f, 100.f);
 
     basic_shader.Bind();
+
+    std::cout << "Start Game Loop" << std::endl;
+    SDL_Event Event;
     while (running) {
         while (SDL_PollEvent(&Event)) {
             OnEvent(&Event);
         }
         //OnLoop();
+
+        //Rotate boxes
         angle += 0.5;
         b.rotate(angle, 0.5f, 1.f, 0.f);
         b2.rotate(angle, 0.5f, 1.f, 0.f);
         if (angle >= 360) angle = 0;
 
-        float d = deltaTime();
-        if (press[0]) {
-            cam.Move(Direction::FORWARD, d);
-        }
-        if (press[1]) {
-            cam.Move(Direction::BACKWARD, d);
-        }
-        if (press[2]) {
-            cam.Move(Direction::RIGHT, d);
-        }
-        if (press[3]) {
-            cam.Move(Direction::LEFT, d);
-        }
-
+        cam.Move(deltaTime());
 
         //Render
         OnRender();
