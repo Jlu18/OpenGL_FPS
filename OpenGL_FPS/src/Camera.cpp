@@ -31,17 +31,21 @@ void Camera::ToggleMove(Direction direction,bool toggle) {
 void Camera::Move(float deltaTime) {
 	float d_speed = move_speed * deltaTime;
 	glm::vec3 facing(0.f,0.f,0.f);
+	//y component is 0 so the movement is not moving towards
+	//where the camera is looking (like no-clip in Valve game) at but
+	//and move only on horizontal plane
+	//MAYBE? - have two modes of movement (regular and one with noclip)
 	if (dir[0]) {
-		facing += front;
+		facing += glm::vec3(front.x,0.f,front.z);
 	}
 	if (dir[1]) {
-		facing -= front;
+		facing -= glm::vec3(front.x, 0.f, front.z);
 	}
 	if (dir[2]) {
-		facing += right;
+		facing += glm::vec3(right.x, 0.f, right.z);
 	}
 	if (dir[3]) {
-		facing -= right;
+		facing -= glm::vec3(right.x, 0.f, right.z);
 	}
 
 	pos += facing * d_speed;
