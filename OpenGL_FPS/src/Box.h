@@ -75,9 +75,7 @@ public:
 		tran.position = glm::vec3(1.0f);
 		tran.rotation = glm::vec3(1.0f);
 		tran.angle	  = glm::radians(0.f);
-		tran.scale    = glm::vec3(1.0f);
-
-		p_matrix = glm::perspective(glm::radians(45.0f), 640.f /480.f, 0.1f, 100.0f);
+		tran.scale = glm::vec3(1.0f);
 
 		move(0, 0, 0);
 	}
@@ -91,7 +89,6 @@ public:
 		vb->Bind();
 		ib->Bind();
 		va->Bind();
-		shader->Bind();
 	}
 
 	void UpdateTransformation() {
@@ -111,10 +108,10 @@ public:
 		UpdateTransformation();
 	}
 
-	void Draw() {
+	void Draw(glm::mat4 pv_matrix) {
 		//shader.SetUniform4f("u_Color", 0.8f, 1.f, 0.5f, 1.f);
 
-		shader->SetUniformMat4fv("matrix", t_matrix); //matrix
+		shader->SetUniformMat4fv("matrix", pv_matrix * t_matrix); //matrix
 
 		GLCall(glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr));
 	}

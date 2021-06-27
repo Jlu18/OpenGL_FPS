@@ -5,6 +5,8 @@
 #include <SDL.h>
 #include <vector>
 
+#include "Camera.h"
+
 class Application {
 private:
     bool running;
@@ -12,6 +14,19 @@ private:
     SDL_Surface* surface;
     SDL_GLContext   context;
     //std::vector<StateBase> m_state
+
+    Camera cam; //temp;
+    bool keydown;
+
+    bool press[4]; //0 = forward; 1=backward; 2=right; 3=left;
+
+    Uint32 lastTime, currentTime;
+    float deltaTime() {
+        currentTime = SDL_GetTicks();
+        Uint32 re = currentTime - lastTime;
+        lastTime = currentTime;
+        return static_cast<float>(re)/1000;
+    }
 public:
     Application();
     int OnExecute();

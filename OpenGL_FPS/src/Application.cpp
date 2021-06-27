@@ -6,10 +6,18 @@
 #include <string>
 #include <iostream>
 
+#include <glm/gtc/matrix_transform.hpp>
+
 #include "Box.h"
 #include "Util.h"
 
 Application::Application() : running(false), window(NULL), surface(NULL), context(NULL) {
+    lastTime = currentTime = 0;
+    keydown = false;
+    press[0] = false;
+    press[1] = false;
+    press[2] = false;
+    press[3] = false;
 };
 
 bool Application::OnInit() {
@@ -57,8 +65,40 @@ bool Application::OnInit() {
 }
 
 void Application::OnEvent(SDL_Event* event) {
-    if (event->type == SDL_QUIT) {
-        running = false;
+
+    switch(event->type){
+        case SDL_QUIT:
+            running = false;
+            return;
+        case SDL_KEYDOWN:
+            if (!event->key.repeat) {
+                switch (event->key.keysym.sym)
+                {
+                case SDLK_w:
+                case SDLK_UP:       press[0] = true; break;
+                case SDLK_s:
+                case SDLK_DOWN:     press[1] = true; break;
+                case SDLK_a:
+                case SDLK_LEFT:     press[2] = true; break;
+                case SDLK_d:
+                case SDLK_RIGHT:    press[3] = true; break;
+                }
+            }
+            break;
+        case SDL_KEYUP:
+            if (!event->key.repeat) {
+                switch (event->key.keysym.sym)
+                {
+                case SDLK_w:    
+                case SDLK_UP:       press[0] = false; break;
+                case SDLK_s:   
+                case SDLK_DOWN:     press[1] = false; break;
+                case SDLK_a:
+                case SDLK_LEFT:     press[2] = false; break;
+                case SDLK_d:
+                case SDLK_RIGHT:    press[3] = false; break;
+                }
+            }
     }
 }
 
@@ -98,31 +138,55 @@ int Application::OnExecute() {
     //glDepthFunc(GL_LESS); // Depth-testing interprets a smaller value as "closer"
     Shader basic_shader = Shader("./res/shader/Basic.shader");
     Box b = Box(&basic_shader);
+    Box b2 = Box(&basic_shader);
     //Square s = Square(&basic_shader);
 
     std::cout << "Start Game Loop" << std::endl;
 
-
-    Shader shader("res/shader/Basic.shader");
-
+    glm::mat4 proj_matrix = glm::perspective(glm::radians(60.f),640.f/480.f,0.1f,100.f);
+    
     float angle = 0;
     //SDL Event 
     SDL_Event Event;
-    b.BindAll();
-    while (running) {
+    
+    b2.move(0.5, 0, -0.5);
 
+    basic_shader.Bind();
+    while (running) {
         while (SDL_PollEvent(&Event)) {
             OnEvent(&Event);
         }
         //OnLoop();
         angle += 0.5;
         b.rotate(angle, 0.5f, 1.f, 0.f);
+        b2.rotate(angle, 0.5f, 1.f, 0.f);
         if (angle >= 360) angle = 0;
+
+        float d = deltaTime();
+        if (press[0]) {
+            cam.Move(Direction::FORWARD, d);
+        }
+        if (press[1]) {
+            cam.Move(Direction::BACKWARD, d);
+        }
+        if (press[2]) {
+            cam.Move(Direction::RIGHT, d);
+        }
+        if (press[3]) {
+            cam.Move(Direction::LEFT, d);
+        }
+
+
+        //Render
         OnRender();
 
+        b.BindAll();
+        basic_shader.SetUniform4f("u_Color", 1.0f, 0.f, 0.f, 1.0f);
+        b.Draw(proj_matrix * cam.GetViewMatrix());
 
-        // Draw
-        b.Draw();
+        b2.BindAll();
+        basic_shader.SetUniform4f("u_Color", 0.f, 1.f, 0.f, 1.0f);
+        b2.Draw(proj_matrix * cam.GetViewMatrix());
 
         //Place GL Context to SDL Window Updat the screen
         SDL_GL_SwapWindow(window);
