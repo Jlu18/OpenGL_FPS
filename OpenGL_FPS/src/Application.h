@@ -7,24 +7,28 @@
 
 #include "Camera.h"
 
+#include "StateManager.h"
+#include "ResourceManager.h"
+#include "Renderer.h"
+
 class Application {
 private:
-    bool running;
-    SDL_Window* window;
-    SDL_Surface* surface;
-    SDL_GLContext   context;
-    //std::vector<StateBase> m_state
-
-    Camera cam; //temp;
-    bool keydown;
+    bool running;                   //game loop
+    bool focus;
+    SDL_Window* window;             //windows to create
+    SDL_GLContext   context;        //info to draw it on
+    //SDL_Surface* surface;         //use for area of graphical memory
 
     Uint32 lastTime, currentTime;
+
+    //find the time it last in seconds 
     float deltaTime() {
         currentTime = SDL_GetTicks();
         Uint32 re = currentTime - lastTime;
         lastTime = currentTime;
         return static_cast<float>(re)/1000;
     }
+
 public:
     Application();
     int OnExecute();

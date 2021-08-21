@@ -4,11 +4,10 @@
 
 layout(location = 0) in vec4 a_Pos;
 
-out vec4 vertexColor;
-uniform mat4 matrix;
+uniform mat4 u_Matrix;
 
 void main() {
-    gl_Position = matrix*a_Pos;
+    gl_Position = u_Matrix*a_Pos;
 }
 
 #shader fragment

@@ -6,14 +6,11 @@
 #include <string>
 #include <iostream>
 
-#include <glm/gtc/matrix_transform.hpp>
+#include "StateManager.h"
 
-#include "Box.h"
-#include "Util.h"
 
-Application::Application() : running(false), window(NULL), surface(NULL), context(NULL) {
+Application::Application() : running(false),focus(true), window(NULL), context(NULL) {
     lastTime = currentTime = 0;
-    keydown = false;
 };
 
 bool Application::OnInit() {
@@ -57,64 +54,32 @@ bool Application::OnInit() {
         std::cout << "Warning: Unable to set VSync! SDL Error: " <<  SDL_GetError() << std::endl;
     }
 
-    SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_SetRelativeMouseMode((SDL_bool)focus);
+
+    StateManager::Init();
 
     return true;
 }
 
-void Application::OnEvent(SDL_Event* event) {
-
-    switch(event->type){
-        case SDL_QUIT:
-            running = false;
-            return;
-        case SDL_KEYDOWN:
-            if (!event->key.repeat) {
-                switch (event->key.keysym.sym)
-                {
-                case SDLK_w:
-                case SDLK_UP:       cam.ToggleMove(Direction::FORWARD,true); break;
-                case SDLK_s:
-                case SDLK_DOWN:     cam.ToggleMove(Direction::BACKWARD, true); break;
-                case SDLK_a:
-                case SDLK_LEFT:     cam.ToggleMove(Direction::LEFT, true); break;
-                case SDLK_d:
-                case SDLK_RIGHT:    cam.ToggleMove(Direction::RIGHT, true); break;
-                }
-            }
-            break;
-        case SDL_KEYUP:
-            if (!event->key.repeat) {
-                switch (event->key.keysym.sym)
-                {
-                case SDLK_w:
-                case SDLK_UP:       cam.ToggleMove(Direction::FORWARD, false); break;
-                case SDLK_s:
-                case SDLK_DOWN:     cam.ToggleMove(Direction::BACKWARD, false); break;
-                case SDLK_a:
-                case SDLK_LEFT:     cam.ToggleMove(Direction::LEFT, false); break;
-                case SDLK_d:
-                case SDLK_RIGHT:    cam.ToggleMove(Direction::RIGHT, false); break;
-                }
-            }
-            break;
-        case SDL_MOUSEMOTION:
-            //std::cout << event->motion.xrel << std::endl;
-            cam.Rotate(event->motion.xrel, event->motion.yrel, true);
-            break;
-    }
+void Application::OnEvent(SDL_Event* e) 
+{
+    StateManager::CurrentState->HandleEvents(e);
 }
 
-void Application::OnLoop() {
+void Application::OnLoop()
+{
+    StateManager::CurrentState->Update();
 }
 
-void Application::OnRender() {
-    GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
-    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+void Application::OnRender()
+{
+    StateManager::CurrentState->Draw();
 }
 
-void Application::OnCleanUp(){
- 
+void Application::OnCleanUp()
+{
+    StateManager::CurrentState->CleanUp();
+
     SDL_DestroyWindow(window);
     window = NULL;
 
@@ -134,49 +99,29 @@ int Application::OnExecute() {
     std::cout << "Status: Using OpenGL " << glGetString(GL_VERSION) << std::endl;
     std::cout << "Status: Using Renderer " << glGetString(GL_RENDERER) << std::endl;
     std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
-
-    Shader basic_shader = Shader("./res/shader/Basic.shader");
-    Box b = Box(&basic_shader);
-    Box b2 = Box(&basic_shader);
-    b2.move(0.5, 0, -0.5);    //offset second box
     
     /* Tell GL to only draw onto a pixel if the shape is closer to the viewer */
     //glEnable(GL_DEPTH_TEST); //Enable depth-testing
-    //glDepthFunc(GL_LESS); // Depth-testing interprets a smaller value as "closer"
-    glViewport(0, 0, 640, 480);
-
-    float angle = 0;
-    glm::mat4 proj_matrix = glm::perspective(glm::radians(60.f), 640.f / 480.f, 0.1f, 100.f);
-
-    basic_shader.Bind();
+    //glDepthFunc(GL_LESS);    // Depth-testing interprets a smaller value as "closer"
 
     std::cout << "Start Game Loop" << std::endl;
     SDL_Event Event;
     while (running) {
         while (SDL_PollEvent(&Event)) {
+            if (Event.type == SDL_QUIT) {
+                running = false;
+                break;
+            }
+            else if (Event.type == SDL_KEYDOWN && Event.key.keysym.sym == SDL_KeyCode::SDLK_ESCAPE) {
+                focus = !focus;
+                SDL_SetRelativeMouseMode((SDL_bool)focus);
+            }
             OnEvent(&Event);
         }
-        //OnLoop();
-
-        //Rotate boxes
-        angle += 0.5;
-        b.rotate(angle, 0.5f, 1.f, 0.f);
-        b2.rotate(angle, 0.5f, 1.f, 0.f);
-        if (angle >= 360) angle = 0;
-
-        cam.Move(deltaTime());
-
+        //Update
+        OnLoop();
         //Render
         OnRender();
-
-        b.BindAll();
-        basic_shader.SetUniform4f("u_Color", 1.0f, 0.f, 0.f, 1.0f);
-        b.Draw(proj_matrix * cam.GetViewMatrix());
-
-        b2.BindAll();
-        basic_shader.SetUniform4f("u_Color", 0.f, 1.f, 0.f, 1.0f);
-        b2.Draw(proj_matrix * cam.GetViewMatrix());
-
         //Place GL Context to SDL Window Updat the screen
         SDL_GL_SwapWindow(window);
     }
