@@ -21,7 +21,7 @@ bool Application::OnInit() {
 
     //Use OpenGL 3.1 core
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     window = SDL_CreateWindow("OpenGL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
@@ -101,11 +101,11 @@ int Application::OnExecute() {
     std::cout << "Status: Using GLEW " << glewGetString(GLEW_VERSION) << std::endl;
     
     /* Tell GL to only draw onto a pixel if the shape is closer to the viewer */
-    //glEnable(GL_DEPTH_TEST); //Enable depth-testing
     //glDepthFunc(GL_LESS);    // Depth-testing interprets a smaller value as "closer"
 
     std::cout << "Start Game Loop" << std::endl;
     SDL_Event Event;
+    //int countedFrames = 0;
     while (running) {
         while (SDL_PollEvent(&Event)) {
             if (Event.type == SDL_QUIT) {
@@ -118,12 +118,21 @@ int Application::OnExecute() {
             }
             OnEvent(&Event);
         }
+
+        //float fps = countedFrames / deltaTime();
+        //if (fps > 2000000) {
+        //    fps = 0;
+        //}
+        //SDL_SetWindowTitle(window,std::to_string(fps).c_str());
+
         //Update
         OnLoop();
         //Render
         OnRender();
         //Place GL Context to SDL Window Updat the screen
         SDL_GL_SwapWindow(window);
+
+        //++countedFrames;
     }
     std::cout << "Ending game loop" << std::endl;
     OnCleanUp();

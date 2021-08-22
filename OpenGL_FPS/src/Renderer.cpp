@@ -20,8 +20,8 @@ void Renderer::Init()
 	ResourceManager::LoadShader("res/shader/Basic.shader", "basic");
 	shader = ResourceManager::GetShader("basic");
 	
-	vb_box = new VertexBuffer(verts, v_count);
-	ib_box = new IndexBuffer(indices, i_count);
+	vb_box = new VertexBuffer(verts, v_count*sizeof(float));
+	//ib_box = new IndexBuffer(indices, i_count);
 	vbl_box = new VertexBufferLayout();
 	
 	vbl_box->Push<float>(3);
@@ -33,7 +33,6 @@ void Renderer::Init()
 void Renderer::CleanUp()
 {
 	delete vb_box;
-	delete ib_box;
 	delete va_box;
 	delete vbl_box;
 }
@@ -41,14 +40,14 @@ void Renderer::CleanUp()
 void Renderer::Bind() {
 	shader->Bind();
 	vb_box->Bind();
-	ib_box->Bind();
 	va_box->Bind();
 }
 
+//draw box only now
 void Renderer::Render(Entity* entity,glm::mat4 projViewMat)
 {
 	shader->SetUniform4f("u_Color", 1.0f, 0.0f, 0.0f, 1.0f);
-	shader->SetUniformMat4fv("u_Matrix", projViewMat*entity->GetTransformMatrix());
-	GLCall(glDrawElements(GL_TRIANGLES,ib_box->GetCount(),GL_UNSIGNED_INT,nullptr));
+	shader->SetUniformMat4fv("u_Matrix", projViewMat * entity->GetTransformMatrix());//);
+	GLCall(glDrawArrays(GL_TRIANGLES,0,36));
 }
 

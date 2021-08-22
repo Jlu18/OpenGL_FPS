@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\entt;$(SolutionDir)Dependencies\SDL2-2.0.14\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Library\cpp\stb\;D:\Library\cpp\glm;D:\Library\cpp\GLEW\include;D:\Library\cpp\SDL2-2.0.14\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -142,7 +142,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\SDL2-2.0.14\lib\x86;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Library\cpp\SDL2-2.0.14\lib\x86;D:\Library\cpp\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

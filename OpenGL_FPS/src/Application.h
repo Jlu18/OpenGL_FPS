@@ -3,6 +3,7 @@
 #define SDL_MAIN_HANDLED
 
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <vector>
 
 #include "Camera.h"
@@ -19,9 +20,8 @@ private:
     SDL_GLContext   context;        //info to draw it on
     //SDL_Surface* surface;         //use for area of graphical memory
 
-    Uint32 lastTime, currentTime;
-
     //find the time it last in seconds 
+    Uint32 lastTime, currentTime;
     float deltaTime() {
         currentTime = SDL_GetTicks();
         Uint32 re = currentTime - lastTime;

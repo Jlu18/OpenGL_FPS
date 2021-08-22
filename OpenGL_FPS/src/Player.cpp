@@ -3,7 +3,7 @@
 #include "player.h"
 #include "Setting.h"
 
-Player::Player():Character(),Camera(Setting::FOV,Setting::WIDTH, Setting::HEIGHT){
+Player::Player():Character(),Camera(Setting::FOV,(float)Setting::WIDTH, (float)Setting::HEIGHT){
 	CSetPosition({ 0.0f,2.0f,0.0f });
 }
 

@@ -14,10 +14,12 @@ void StateGame::Init()
 
 	entity = std::make_unique<Entity>();
 	entity->SetScale({ 5.0f, 5.0f, 5.0f });
-	entity->SetPosition({ 0.0f,0.0f,5.0f });
+	entity->SetPosition({ 0.0f,0.0f, -5.0f });
 
 	xrel = 0.0f;
 	yrel = 0.0f;
+
+	glEnable(GL_DEPTH_TEST); //Enable depth-testing
 }
 
 void StateGame::CleanUp()
@@ -50,8 +52,8 @@ void StateGame::HandleEvents(SDL_Event* Event)
 		break;
 	case SDL_MOUSEMOTION:
 		if (SDL_GetRelativeMouseMode()) {
-			xrel = Event->motion.xrel; 
-			yrel = Event->motion.yrel;
+			xrel = (float)Event->motion.xrel; 
+			yrel = (float)Event->motion.yrel;
 		}
 		break;
 	}
@@ -71,16 +73,18 @@ void StateGame::Update()
 	if (keypress[Setting::RIGHT]) {
 		player->MoveRight();
 	}
-	player->CRotate(xrel, yrel);
-	xrel = 0.0f;
-	yrel = 0.0f;
-
+	if (xrel != 0.0f || yrel != 0.0f) {
+		player->CRotate(xrel, yrel);
+		xrel = 0.0f;
+		yrel = 0.0f;
+	}
+	entity->SetRotation(entity->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
 }
 
 void StateGame::Draw()
 {
 	GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
-	GLCall(glClear(GL_COLOR_BUFFER_BIT));
+	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 	Renderer::Bind();
 	Renderer::Render(entity.get(),player->GetViewProjMatrix());

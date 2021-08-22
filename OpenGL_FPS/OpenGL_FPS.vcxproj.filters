@@ -40,6 +40,12 @@
     <Filter Include="Source Files\State">
       <UniqueIdentifier>{15708c7a-7b3c-4137-8980-ef243092d9d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{3da4b6d4-2906-4247-adca-2b51e863b6ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{5291e6bd-824a-462a-92c2-a3e47de06ea1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
