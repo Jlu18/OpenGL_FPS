@@ -2,16 +2,12 @@
 
 #include "Setting.h"
 
-#include "Character.h"
 #include "Camera.h"
 
 
-class Player : public Character, public Camera {
+class Player : public FPCamera {
 public:
 	Player();
-
-	void MoveForward();
-	void MoveBackward();
-	void MoveLeft();
-	void MoveRight();
+	void Update() { UpdateView(); };
+	void OnMouseMove(float xrel, float yrel);
 };

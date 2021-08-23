@@ -13,12 +13,10 @@ public:
 	void MoveLeft();
 	void MoveRight();
 //Look
-
 protected:
 	//direction character is looking at
 	glm::vec3 front;
+	glm::vec3 up;
 
-	float speed_forward = 0.05f;
-	float speed_backward = 0.05f;
-	float speed_sideways = 0.05f;
+	float speed = 0.1f;
 };

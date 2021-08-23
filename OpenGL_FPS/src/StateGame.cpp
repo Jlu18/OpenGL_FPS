@@ -14,7 +14,7 @@ void StateGame::Init()
 
 	entity = std::make_unique<Entity>();
 	entity->SetScale({ 5.0f, 5.0f, 5.0f });
-	entity->SetPosition({ 0.0f,0.0f, -5.0f });
+	entity->SetPosition({ 0.0f,0.0f, 10.0f });
 
 	xrel = 0.0f;
 	yrel = 0.0f;
@@ -62,22 +62,27 @@ void StateGame::HandleEvents(SDL_Event* Event)
 void StateGame::Update()
 {
 	if (keypress[Setting::FORWARD]) {
+		//std::cout << "W\n";
 		player->MoveForward();
 	}
 	if (keypress[Setting::BACKWARD]) {
+		//std::cout << "S\n";
 		player->MoveBackward();
 	}
 	if (keypress[Setting::LEFT]) {
+		//std::cout << "A\n";
 		player->MoveLeft();
 	}
 	if (keypress[Setting::RIGHT]) {
+		//std::cout << "D\n";
 		player->MoveRight();
 	}
 	if (xrel != 0.0f || yrel != 0.0f) {
-		player->CRotate(xrel, yrel);
+		player->OnMouseMove(xrel, yrel);
 		xrel = 0.0f;
 		yrel = 0.0f;
 	}
+	player->Update();
 	entity->SetRotation(entity->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
 }
 

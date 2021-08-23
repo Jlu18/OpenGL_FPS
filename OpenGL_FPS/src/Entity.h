@@ -24,5 +24,4 @@ protected:
 	glm::vec3 position;
 	glm::vec3 rotation;
 	glm::vec3 scale;
-//shader that will be applied to the Entity
 };	
