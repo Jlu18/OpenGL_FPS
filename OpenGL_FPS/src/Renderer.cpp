@@ -44,10 +44,13 @@ void Renderer::Bind() {
 }
 
 //draw box only now
-void Renderer::Render(Entity* entity,glm::mat4 projViewMat)
+void Renderer::Render(std::vector<std::shared_ptr<Entity>> entities,glm::mat4 projViewMat)
 {
 	shader->SetUniform4f("u_Color", 1.0f, 0.0f, 0.0f, 1.0f);
-	shader->SetUniformMat4fv("u_Matrix", projViewMat * entity->GetTransformMatrix());//);
-	GLCall(glDrawArrays(GL_TRIANGLES,0,36));
+
+	for (std::vector<std::shared_ptr<Entity>>::iterator entity = entities.begin(); entity != entities.end(); entity++) {
+		shader->SetUniformMat4fv("u_Matrix", projViewMat * (*entity)->GetTransformMatrix());//);
+		GLCall(glDrawArrays(GL_TRIANGLES,0,36));
+	}
 }
 

@@ -11,7 +11,7 @@ class Renderer {
 public:
 	static void Init();
 	static void CleanUp();
-	static void Render(Entity* entity, glm::mat4 projViewMat);
+	static void Render(std::vector<std::shared_ptr<Entity>> entities, glm::mat4 projViewMat);
 	static void Bind();
 	
 private:

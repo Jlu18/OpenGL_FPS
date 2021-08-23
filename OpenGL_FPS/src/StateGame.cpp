@@ -12,9 +12,13 @@ void StateGame::Init()
 //Player
 	player = std::make_unique<Player>();
 
-	entity = std::make_unique<Entity>();
-	entity->SetScale({ 5.0f, 5.0f, 5.0f });
-	entity->SetPosition({ 0.0f,0.0f, 10.0f });
+	entities.push_back(std::make_shared<Entity>());
+	entities[0]->SetScale({ 5.0f, 5.0f, 5.0f });
+	entities[0]->SetPosition({ 0.0f,0.0f, 10.0f });
+	
+	entities.push_back(std::make_shared<Entity>());
+	entities[1]->SetScale({ 100.0f, 1.0f, 100.0f });
+	entities[1]->SetPosition({ 0.0f,-10.0f, 0.0f });
 
 	xrel = 0.0f;
 	yrel = 0.0f;
@@ -83,7 +87,7 @@ void StateGame::Update()
 		yrel = 0.0f;
 	}
 	player->Update();
-	entity->SetRotation(entity->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
+	entities[0]->SetRotation(entities[0]->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
 }
 
 void StateGame::Draw()
@@ -92,5 +96,5 @@ void StateGame::Draw()
 	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 	Renderer::Bind();
-	Renderer::Render(entity.get(),player->GetViewProjMatrix());
+	Renderer::Render(entities,player->GetViewProjMatrix());
 }

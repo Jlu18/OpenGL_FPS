@@ -19,7 +19,7 @@ public:
 
 private:
 	std::unique_ptr<Player> player;
-	std::unique_ptr<Entity> entity;
+	std::vector<std::shared_ptr<Entity>> entities;
 
 	float xrel,yrel;
 };
