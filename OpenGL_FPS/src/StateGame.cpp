@@ -9,12 +9,17 @@ void StateGame::Init()
 //Renderer
 	Renderer::Init();
 
+	ResourceManager::LoadTexture("res/texture/bear2.png", true, "bear");
+	//ResourceManager::LoadTexture("res/texture/wall.jpg", false, "wall");
+	Texture2D* bear_texture = ResourceManager::GetTexture("bear");
+	//Texture2D* wall_texture = ResourceManager::GetTexture("wall");
 //Player
 	player = std::make_unique<Player>();
 
 	entities.push_back(std::make_shared<Entity>());
 	entities[0]->SetScale({ 5.0f, 5.0f, 5.0f });
 	entities[0]->SetPosition({ 0.0f,0.0f, 10.0f });
+	entities[0]->SetTexture(bear_texture);
 	
 	entities.push_back(std::make_shared<Entity>());
 	entities[1]->SetScale({ 100.0f, 1.0f, 100.0f });
@@ -29,6 +34,7 @@ void StateGame::Init()
 void StateGame::CleanUp()
 {
 	Renderer::CleanUp();
+	ResourceManager::Clear();
 }
 
 void StateGame::Pause()
@@ -95,6 +101,5 @@ void StateGame::Draw()
 	GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
 	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-	Renderer::Bind();
-	Renderer::Render(entities,player->GetViewProjMatrix());
+	Renderer::RenderTexture(entities,player->GetViewProjMatrix());
 }

@@ -5,10 +5,10 @@
 #include <sstream>
 
 #include <GL/glew.h>
-//#include "stb_image.h"
+#include <stb_image.h>
 
 std::map<std::string, Shader*> ResourceManager::m_shaders;
-//std::map<std::string, Texture2D*>ResourceManager::m_textures;
+std::map<std::string, Texture2D*>ResourceManager::m_textures;
 
 /*
 	Shader Loaders
@@ -72,47 +72,48 @@ Shader* ResourceManager::GenerateShaderData(const std::string& filePath) {
 /*
 	Texture Loaders
 */
-//void ResourceManager::LoadTexture(const char* filePath, bool alpha, std::string name)
-//{
-//	Texture2D* texture = GenerateTextureData(filePath, alpha);
-//	if (texture != nullptr) {
-//		m_textures[name] = texture;
-//	}
-//}
-//
-//Texture2D* ResourceManager::GetTexture(std::string name)
-//{
-//	if (HasTexture(name)) {
-//		return m_textures[name];
-//	}
-//	else {
-//		return nullptr;
-//	}
-//}
+void ResourceManager::LoadTexture(const char* filePath, bool alpha, std::string name)
+{
+	Texture2D* texture = GenerateTextureData(filePath, alpha);
+	if (texture != nullptr) {
+		m_textures[name] = texture;
+	}
+}
 
-//Texture2D* ResourceManager::GenerateTextureData(const std::string& filePath, bool alpha)
-//{
-//	int width, height, nrChannels;
-//	unsigned char* data = stbi_load(filePath.c_str(), &width, &height, &nrChannels, 0);
-//
-//	if (data == NULL) {
-//		std::cout << "failed to load texture \"" << filePath << "\": " << stbi_failure_reason() << "\n";
-//		return nullptr;
-//	}
-//
-//	Texture2D* texture = new Texture2D();
-//
-//	if (alpha)
-//	{
-//		texture->Internal_Format = GL_RGBA;
-//		texture->Image_Format = GL_RGBA;
-//	}
-//
-//	texture->Generate(width, height, data);
-//
-//	stbi_image_free(data);
-//	return texture;
-//}
+Texture2D* ResourceManager::GetTexture(std::string name)
+{
+	if (HasTexture(name)) {
+		return m_textures[name];
+	}
+	else {
+		return nullptr;
+	}
+}
+
+Texture2D* ResourceManager::GenerateTextureData(const std::string& filePath, bool alpha)
+{
+	int width, height, nrChannels;
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char* data = stbi_load(filePath.c_str(), &width, &height, &nrChannels, 0);
+
+	if (data == NULL) {
+		std::cout << "failed to load texture \"" << filePath << "\": " << stbi_failure_reason() << "\n";
+		return nullptr;
+	}
+
+	Texture2D* texture = new Texture2D();
+
+	if (alpha)
+	{
+		texture->Internal_Format = GL_RGBA;
+		texture->Image_Format = GL_RGBA;
+	}
+
+	texture->Generate(width, height, data);
+
+	stbi_image_free(data);
+	return texture;
+}
 
 /*
 	Other
@@ -123,8 +124,8 @@ void ResourceManager::Clear() {
 	}
 	m_shaders.clear();
 
-	//for (auto t = m_textures.begin(); t != m_textures.end(); t++) {
-	//	delete t->second;
-	//}
-	//m_textures.clear();
+	for (auto t = m_textures.begin(); t != m_textures.end(); t++) {
+		delete t->second;
+	}
+	m_textures.clear();
 }

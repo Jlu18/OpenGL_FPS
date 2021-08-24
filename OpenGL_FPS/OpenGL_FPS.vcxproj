@@ -34,11 +34,14 @@
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\Shader.cpp" />
+    <ClCompile Include="src\stb.cpp" />
+    <ClCompile Include="src\Texture2D.cpp" />
     <ClCompile Include="src\VertexArray.cpp" />
     <ClCompile Include="src\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
+    <None Include="res\shader\Texture.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Character.h" />
@@ -56,6 +59,7 @@
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\Square.h" />
     <ClInclude Include="src\StateManager.h" />
+    <ClInclude Include="src\Texture2D.h" />
     <ClInclude Include="src\Util.h" />
     <ClInclude Include="src\VertexArray.h" />
     <ClInclude Include="src\VertexBuffer.h" />

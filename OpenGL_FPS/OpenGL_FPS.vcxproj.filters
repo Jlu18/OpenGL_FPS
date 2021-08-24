@@ -46,6 +46,9 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{5291e6bd-824a-462a-92c2-a3e47de06ea1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\_stb">
+      <UniqueIdentifier>{51f82aef-53ef-4c74-b94e-cd250c8731cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -98,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\stb.cpp">
+      <Filter>Source Files\_stb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Texture2D.cpp">
+      <Filter>Source Files\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +167,15 @@
     <ClInclude Include="src\Setting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Texture2D.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\shader\Texture.shader">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
