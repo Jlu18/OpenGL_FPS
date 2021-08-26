@@ -24,6 +24,7 @@
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Raycast.cpp" />
     <ClCompile Include="src\Setting.cpp" />
     <ClCompile Include="src\StateBase.cpp" />
     <ClCompile Include="src\Square.cpp" />
@@ -46,6 +47,7 @@
   <ItemGroup>
     <ClInclude Include="src\Character.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\Raycast.h" />
     <ClInclude Include="src\Setting.h" />
     <ClInclude Include="src\StateGame.h" />
     <ClInclude Include="src\StateBase.h" />

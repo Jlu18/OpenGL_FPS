@@ -23,6 +23,7 @@ protected:
 	//log the status of keypressed on each key,
 	//each index represents SDK_KeyCode
 	bool keypress[286] = { 0 };
+	//0 - ; 1-left click; 2-scroll wheek click; 3-right click; 4-lower button; 5-upper button; 
 	bool mousepress[6] = { 0 };
 	glm::vec2 mousemove { 0.f };
 };

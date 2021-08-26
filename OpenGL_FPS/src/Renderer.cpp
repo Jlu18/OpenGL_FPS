@@ -74,4 +74,3 @@ void Renderer::RenderTexture(std::vector<std::shared_ptr<Entity>> entities, glm:
 		}
 	}
 }
-

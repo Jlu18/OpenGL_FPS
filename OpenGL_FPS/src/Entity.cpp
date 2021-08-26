@@ -16,3 +16,12 @@ glm::mat4 Entity::GetTransformMatrix()
 
 	return matrix;
 }
+
+Box Entity::GetCollisionBoxes()
+{
+	//TODO - Count rotation by apply rotation matrix
+	return {
+		position - scale/2.0f, //min
+		position + scale/2.0f  //max
+	} ;
+}

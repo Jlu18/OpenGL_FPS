@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Raycast.h"
 
 Character::Character(): Entity()
 {
@@ -20,6 +21,11 @@ void Character::MoveBackward()
 void Character::MoveRight()
 {
 	Translate(glm::normalize(glm::vec3(1.0f, 0.0f, 1.0f) * glm::cross(front, up)) * speed);
+}
+
+std::shared_ptr<Entity> Character::CheckObjectLookingAt(std::vector<std::shared_ptr<Entity>> entities)
+{
+	return Ray::CheckFirstObjectHit(position,front,entities);
 }
 
 void Character::MoveLeft()

@@ -16,14 +16,15 @@ void StateGame::Init()
 //Player
 	player = std::make_unique<Player>();
 
-	entities.push_back(std::make_shared<Entity>());
-	entities[0]->SetScale({ 5.0f, 5.0f, 5.0f });
-	entities[0]->SetPosition({ 0.0f,0.0f, 10.0f });
-	entities[0]->SetTexture(bear_texture);
-	
-	entities.push_back(std::make_shared<Entity>());
-	entities[1]->SetScale({ 100.0f, 1.0f, 100.0f });
-	entities[1]->SetPosition({ 0.0f,-10.0f, 0.0f });
+
+	for (unsigned int i = 0; i < 10; i++) {
+		entities.push_back(std::make_shared<Entity>());
+		entities[i]->SetScale({ 5.0f, 5.0f, 5.0f });
+		entities[i]->SetPosition({ i * 10.0f - 50.0f,0.0f, 5.0f });
+		entities[i]->SetTexture(bear_texture);
+		entities[i]->SetName("entity" + std::to_string(i));
+	}
+
 
 	xrel = 0.0f;
 	yrel = 0.0f;
@@ -92,8 +93,21 @@ void StateGame::Update()
 		xrel = 0.0f;
 		yrel = 0.0f;
 	}
+
+	if (mousepress[1]) {
+		std::shared_ptr<Entity> ray_entity = player->CheckObjectLookingAt(entities);
+		if ( ray_entity != nullptr) {
+			std::cout << "player hit: " << (ray_entity)->GetName() << '\n';
+		}
+		else {
+			std::cout << "No entity hitted :(\n";
+		}
+	}
+
+	//std::cout << mousepress[0] << ' ' << mousepress[1] << ' ' << mousepress[2] << ' ' << mousepress[3] << ' ' << mousepress[4] << ' ' << mousepress[5] << '\n';
+
 	player->Update();
-	entities[0]->SetRotation(entities[0]->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
+	//entities[0]->SetRotation(entities[0]->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
 }
 
 void StateGame::Draw()

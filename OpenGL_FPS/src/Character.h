@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "Entity.h"
 
 //base class for all the Player/NPC in the scene
@@ -13,6 +14,8 @@ public:
 	void MoveLeft();
 	void MoveRight();
 //Look
+
+	std::shared_ptr<Entity> CheckObjectLookingAt(std::vector<std::shared_ptr<Entity>> entities);
 protected:
 	//direction character is looking at
 	glm::vec3 front;
