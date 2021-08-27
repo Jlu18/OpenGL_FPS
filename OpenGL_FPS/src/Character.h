@@ -13,6 +13,11 @@ public:
 	void MoveBackward();
 	void MoveLeft();
 	void MoveRight();
+
+	void MoveUp();
+	void MoveDown();
+
+	bool Colliding(); 
 //Look
 
 	std::shared_ptr<Entity> CheckObjectLookingAt(std::vector<std::shared_ptr<Entity>> entities);

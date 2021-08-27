@@ -1,6 +1,5 @@
 #include "Raycast.h"
 namespace Ray {
-
 	/*
 		From "An Efficientand Robust Ray-Box Intersection Algorithm"
 			by Williams, et al. 2005.

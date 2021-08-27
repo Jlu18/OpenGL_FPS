@@ -29,7 +29,9 @@ void StateGame::Init()
 	xrel = 0.0f;
 	yrel = 0.0f;
 
-	glEnable(GL_DEPTH_TEST); //Enable depth-testing
+	GLCall(glEnable(GL_DEPTH_TEST)); //Enable depth-testing
+	//GLCall(glEnable(GL_CULL_FACE));
+	//glCullFace(GL_FRONT);	
 }
 
 void StateGame::CleanUp()
@@ -50,10 +52,10 @@ void StateGame::HandleEvents(SDL_Event* Event)
 {
 	switch (Event->type) {
 	case SDL_KEYDOWN:
-		SetKeyPress(Event->key.keysym.sym, true);
+		SetKeyPress(Event->key.keysym.scancode, true);
 		break;
 	case SDL_KEYUP:
-		SetKeyPress(Event->key.keysym.sym, false);
+		SetKeyPress(Event->key.keysym.scancode, false);
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 		SetMousePress(Event->button.button, true);
@@ -87,6 +89,12 @@ void StateGame::Update()
 	if (keypress[Setting::RIGHT]) {
 		//std::cout << "D\n";
 		player->MoveRight();
+	}
+	if (keypress[Setting::JUMP]) {
+		player->MoveUp();
+	}
+	if (keypress[Setting::DOWN]) {
+		player->MoveDown();
 	}
 	if (xrel != 0.0f || yrel != 0.0f) {
 		player->OnMouseMove(xrel, yrel);

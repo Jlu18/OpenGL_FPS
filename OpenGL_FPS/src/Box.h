@@ -2,12 +2,13 @@
 
 //based on this https://upload.wikimedia.org/wikipedia/commons/1/15/Vertex-Vertex_Meshes_%28VV%29.png
 const static float verts[] = {
-	-0.5f, -0.5f, -0.5f,
-	 0.5f, -0.5f, -0.5f,
-	 0.5f,  0.5f, -0.5f,
-	 0.5f,  0.5f, -0.5f,
-	-0.5f,  0.5f, -0.5f,
-	-0.5f, -0.5f, -0.5f,
+	//back clock wise 
+	-0.5f, -0.5f, -0.5f, //0 
+	 0.5f, -0.5f, -0.5f, //1
+	 0.5f,  0.5f, -0.5f, //2
+	 0.5f,  0.5f, -0.5f, //2
+	-0.5f,  0.5f, -0.5f, //3
+	-0.5f, -0.5f, -0.5f, //0
 
 	-0.5f, -0.5f,  0.5f,
 	 0.5f, -0.5f,  0.5f,

@@ -23,6 +23,16 @@ void Character::MoveRight()
 	Translate(glm::normalize(glm::vec3(1.0f, 0.0f, 1.0f) * glm::cross(front, up)) * speed);
 }
 
+void Character::MoveUp()
+{
+	Translate(glm::vec3(0.0f, 1.0f, 0.0f) * speed);
+}
+
+void Character::MoveDown()
+{
+	Translate(glm::vec3(0.0f, 1.0f, 0.0f) * -speed);
+}
+
 std::shared_ptr<Entity> Character::CheckObjectLookingAt(std::vector<std::shared_ptr<Entity>> entities)
 {
 	return Ray::CheckFirstObjectHit(position,front,entities);

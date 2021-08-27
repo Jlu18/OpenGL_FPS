@@ -25,7 +25,8 @@ public:
 	static uint32_t BACKWARD;
 	static uint32_t RIGHT;
 	static uint32_t LEFT;
-	//static uint32_t JUMP;
+	static uint32_t JUMP; //also up
+	static uint32_t DOWN;
 	//static uint32_t SHOOT;
 	//static uint32_t RELOAD;
 //Volume
