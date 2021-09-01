@@ -10,7 +10,7 @@ namespace Ray {
 		for (unsigned int i = 0; i < entities.size(); i++) {
 			if (!(entities[i]->CollisionEnabled())) continue;
 
-			struct Box boundry = entities[i]->GetCollisionBoxes();
+			struct Box boundry = entities[i]->GetCollisionBox();
 
 			glm::vec3 b_max = boundry.max;
 			glm::vec3 b_min = boundry.min;

@@ -16,15 +16,14 @@ void StateGame::Init()
 //Player
 	player = std::make_unique<Player>();
 
-
 	for (unsigned int i = 0; i < 10; i++) {
 		entities.push_back(std::make_shared<Entity>());
 		entities[i]->SetScale({ 5.0f, 5.0f, 5.0f });
+		entities[i]->SetRotation({ 0.0f, 45.f, 0.f });
 		entities[i]->SetPosition({ i * 10.0f - 50.0f,0.0f, 5.0f });
 		entities[i]->SetTexture(bear_texture);
 		entities[i]->SetName("entity" + std::to_string(i));
 	}
-
 
 	xrel = 0.0f;
 	yrel = 0.0f;
@@ -76,24 +75,30 @@ void StateGame::Update()
 {
 	if (keypress[Setting::FORWARD]) {
 		//std::cout << "W\n";
-		player->MoveForward();
+		//if(!player->CollidingFront(entities))
+			player->MoveForward();
 	}
 	if (keypress[Setting::BACKWARD]) {
 		//std::cout << "S\n";
-		player->MoveBackward();
+		//if(!player->CollidingBack(entities))
+			player->MoveBackward();
 	}
 	if (keypress[Setting::LEFT]) {
 		//std::cout << "A\n";
+		//if(!player->CollidingLeft(entities))
 		player->MoveLeft();
 	}
 	if (keypress[Setting::RIGHT]) {
 		//std::cout << "D\n";
+		//if(!player->CollidingRight(entities))
 		player->MoveRight();
 	}
 	if (keypress[Setting::JUMP]) {
+		//if(!player->CollidingUp(entities))
 		player->MoveUp();
 	}
 	if (keypress[Setting::DOWN]) {
+		//if(!player->CollidingDown(entities))
 		player->MoveDown();
 	}
 	if (xrel != 0.0f || yrel != 0.0f) {

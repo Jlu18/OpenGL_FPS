@@ -3,7 +3,8 @@
 #include "player.h"
 #include "Setting.h"
 
-Player::Player(): FPCamera(Setting::FOV,(float)Setting::WIDTH, (float)Setting::HEIGHT){}
+Player::Player(): 
+	FPCamera(Setting::FOV,(float)Setting::WIDTH, (float)Setting::HEIGHT){}
 
 /*
 	Rotate the character based on the x and y movement

@@ -17,9 +17,7 @@ public:
 	void MoveUp();
 	void MoveDown();
 
-	bool Colliding(); 
 //Look
-
 	std::shared_ptr<Entity> CheckObjectLookingAt(std::vector<std::shared_ptr<Entity>> entities);
 protected:
 	//direction character is looking at

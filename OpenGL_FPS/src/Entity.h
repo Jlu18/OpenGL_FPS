@@ -4,14 +4,13 @@
 #include "Shader.h"
 #include "Texture2D.h"
 
-
-struct Box {
+struct Box { //AABB
 	glm::vec3 min,max;
 };
 
 class Entity {
 public:
-	Entity() :position(0.f), rotation(0.f), scale(1.f), center(0.f), texture(nullptr), name("entity"){};
+	Entity() :position(0.f), rotation(0.f), scale(1.f), texture(nullptr), name("entity"){};
 
 //Setter
 	void SetPosition(glm::vec3 new_pos) { position = new_pos; };
@@ -32,7 +31,7 @@ public:
 	Texture2D* GetTexture() { return texture; };
 
 	bool CollisionEnabled() { return collision_enabled; };
-	struct Box GetCollisionBoxes();
+	struct Box GetCollisionBox();
 
 protected:
 //General
@@ -44,9 +43,7 @@ protected:
 
 //Collision - first all collision will be a box
 	bool collision_enabled = true;
-	glm::vec3 center; //center of the collision box
 
 //temporary
 	Texture2D* texture;
-
 };	

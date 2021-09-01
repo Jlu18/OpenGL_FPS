@@ -17,7 +17,7 @@ glm::mat4 Entity::GetTransformMatrix()
 	return matrix;
 }
 
-Box Entity::GetCollisionBoxes()
+Box Entity::GetCollisionBox()
 {
 	//TODO - Count rotation by apply rotation matrix
 	return {

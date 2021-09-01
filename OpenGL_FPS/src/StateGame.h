@@ -3,8 +3,8 @@
 #include <memory>
 
 #include "StateBase.h"
-#include "Player.h"
 #include "Entity.h"
+#include "Player.h"
 
 class StateGame : public StateBase {
 public:
