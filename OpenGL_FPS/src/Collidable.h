@@ -11,9 +11,7 @@ enum class Axis {x,y,z};
 
 class Collidable : public Entity {
 public:
-	Collidable() { UpdateBox(); };
-
-	BoundingBox GetBoundingBox() { return aabb; };
+	BoundingBox GetBoundingBox() { UpdateBox(); return aabb; };
 	void UpdateBox() {
 		//TODO - Count rotation by apply rotation matrix
 		aabb.min = position - scale / 2.0f; //min
@@ -44,4 +42,6 @@ public:
 	}
 private:
 	BoundingBox aabb;
+	//bool collision_enabled = true;
+	//bool isTrigger;
 }; 

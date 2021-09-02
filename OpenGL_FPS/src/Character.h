@@ -1,28 +1,26 @@
 #pragma once
 #include <memory>
-#include "Entity.h"
+#include "Collidable.h"
 
 //base class for all the Player/NPC in the scene
-class Character : public Entity {
+class Character : public Collidable {
 
 public:
 	Character();
 
 //Movement
-	void MoveForward();
-	void MoveBackward();
-	void MoveLeft();
-	void MoveRight();
-
-	void MoveUp();
-	void MoveDown();
-
+	void SetVelocity(glm::vec3 vel) { velocity = vel; };
+	void Move(); 
 //Look
-	std::shared_ptr<Entity> CheckObjectLookingAt(std::vector<std::shared_ptr<Entity>> entities);
+	std::shared_ptr<Collidable> CheckObjectLookingAt(std::vector<std::shared_ptr<Collidable>> entities);
 protected:
 	//direction character is looking at
 	glm::vec3 front;
 	glm::vec3 up;
+
+//collision
+	glm::vec3 eclipse; //horizontal, vertical and diagonal radius of the eclipse
+	glm::vec3 velocity;
 
 	float speed = 0.1f;
 };

@@ -4,13 +4,13 @@ namespace Ray {
 		From "An Efficientand Robust Ray-Box Intersection Algorithm"
 			by Williams, et al. 2005.
 	*/
-	std::shared_ptr<Entity> CheckFirstObjectHit(glm::vec3 origin, glm::vec3 direction, std::vector<std::shared_ptr<Entity>> entities)
+	std::shared_ptr<Collidable> CheckFirstObjectHit(glm::vec3 origin, glm::vec3 direction, std::vector<std::shared_ptr<Collidable>> entities)
 	{
 		float tmin, tmax, tymin, tymax, tzmin, tzmax;
 		for (unsigned int i = 0; i < entities.size(); i++) {
-			if (!(entities[i]->CollisionEnabled())) continue;
+			//if (!(entities[i]->CollisionEnabled())) continue;
 
-			struct Box boundry = entities[i]->GetCollisionBox();
+			struct BoundingBox boundry = entities[i]->GetBoundingBox();
 
 			glm::vec3 b_max = boundry.max;
 			glm::vec3 b_min = boundry.min;
@@ -58,6 +58,22 @@ namespace Ray {
 			return entities[i];
 		}
 		return nullptr;
+	}
+	std::vector<std::shared_ptr<Collidable>> CheckOverLapObjects(Character* entity, std::vector<std::shared_ptr<Collidable>> objects)
+	{
+		std::vector<std::shared_ptr<Collidable>> results;
+
+		//SAP - Brute Force Approach for now. Prob it's fine but will try to optimize once I have better understanding of this algos
+		for (unsigned int i = 0; i < objects.size(); i++) {
+			if (entity->Intersect(objects[i].get())) {
+				results.push_back(objects[i]);
+			}
+		}
+	}
+	void CheckCollision(Character* entity, std::vector<std::shared_ptr<Collidable>> objects)
+	{
+		std::vector<std::shared_ptr<Collidable>> collided_objects = CheckOverLapObjects(entity, objects);
+
 	}
 }
 

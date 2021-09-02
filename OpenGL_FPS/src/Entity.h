@@ -4,10 +4,6 @@
 #include "Shader.h"
 #include "Texture2D.h"
 
-struct Box { //AABB
-	glm::vec3 min,max;
-};
-
 class Entity {
 public:
 	Entity() :position(0.f), rotation(0.f), scale(1.f), texture(nullptr), name("entity"){};
@@ -30,9 +26,6 @@ public:
 	std::string GetName() { return name; };
 	Texture2D* GetTexture() { return texture; };
 
-	bool CollisionEnabled() { return collision_enabled; };
-	struct Box GetCollisionBox();
-
 protected:
 //General
 	std::string name;
@@ -40,9 +33,6 @@ protected:
 	glm::vec3 position;
 	glm::vec3 rotation;
 	glm::vec3 scale;
-
-//Collision - first all collision will be a box
-	bool collision_enabled = true;
 
 //temporary
 	Texture2D* texture;

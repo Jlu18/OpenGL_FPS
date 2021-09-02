@@ -17,13 +17,17 @@ void StateGame::Init()
 	player = std::make_unique<Player>();
 
 	for (unsigned int i = 0; i < 10; i++) {
-		entities.push_back(std::make_shared<Entity>());
+		std::shared_ptr<Collidable> col = std::make_shared<Collidable>();
+		entities.push_back(col);
+		collidables.push_back(col);
 		entities[i]->SetScale({ 5.0f, 5.0f, 5.0f });
-		entities[i]->SetRotation({ 0.0f, 45.f, 0.f });
+		//entities[i]->SetRotation({ 0.0f, 45.f, 0.f });
 		entities[i]->SetPosition({ i * 10.0f - 50.0f,0.0f, 5.0f });
 		entities[i]->SetTexture(bear_texture);
-		entities[i]->SetName("entity" + std::to_string(i));
+		entities[i]->SetName("Collidable" + std::to_string(i));
+
 	}
+	std::cout << collidables[0]->GetPosition().x << std::endl;
 
 	xrel = 0.0f;
 	yrel = 0.0f;
@@ -73,42 +77,37 @@ void StateGame::HandleEvents(SDL_Event* Event)
 
 void StateGame::Update()
 {
+	glm::vec3 velocity{ 0.f };
 	if (keypress[Setting::FORWARD]) {
-		//std::cout << "W\n";
-		//if(!player->CollidingFront(entities))
-			player->MoveForward();
+		velocity.z += 1.f;
 	}
 	if (keypress[Setting::BACKWARD]) {
-		//std::cout << "S\n";
-		//if(!player->CollidingBack(entities))
-			player->MoveBackward();
+		velocity.z -= 1.f;
 	}
 	if (keypress[Setting::LEFT]) {
-		//std::cout << "A\n";
-		//if(!player->CollidingLeft(entities))
-		player->MoveLeft();
+		velocity.x -= 1.f;
 	}
 	if (keypress[Setting::RIGHT]) {
-		//std::cout << "D\n";
-		//if(!player->CollidingRight(entities))
-		player->MoveRight();
+		velocity.x += 1.f;
 	}
 	if (keypress[Setting::JUMP]) {
-		//if(!player->CollidingUp(entities))
-		player->MoveUp();
+		velocity.y += 1.f;
 	}
 	if (keypress[Setting::DOWN]) {
-		//if(!player->CollidingDown(entities))
-		player->MoveDown();
+		velocity.y -= 1.f;
 	}
 	if (xrel != 0.0f || yrel != 0.0f) {
 		player->OnMouseMove(xrel, yrel);
 		xrel = 0.0f;
 		yrel = 0.0f;
 	}
+	
+	player->SetVelocity(velocity); //Set Velocity
+	player->Move();				   //Update Velocity
+	player->Update();			   //Update View Matrix
 
 	if (mousepress[1]) {
-		std::shared_ptr<Entity> ray_entity = player->CheckObjectLookingAt(entities);
+		std::shared_ptr<Entity> ray_entity = player->CheckObjectLookingAt(collidables);
 		if ( ray_entity != nullptr) {
 			std::cout << "player hit: " << (ray_entity)->GetName() << '\n';
 		}
@@ -116,10 +115,6 @@ void StateGame::Update()
 			std::cout << "No entity hitted :(\n";
 		}
 	}
-
-	//std::cout << mousepress[0] << ' ' << mousepress[1] << ' ' << mousepress[2] << ' ' << mousepress[3] << ' ' << mousepress[4] << ' ' << mousepress[5] << '\n';
-
-	player->Update();
 	//entities[0]->SetRotation(entities[0]->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
 }
 
