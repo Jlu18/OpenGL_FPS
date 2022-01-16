@@ -6,7 +6,7 @@
 #include <string>
 #include <iostream>
 
-#include "StateManager.h"
+#include "State/StateManager.h"
 
 
 Application::Application() : running(false),focus(true), window(NULL), context(NULL) {

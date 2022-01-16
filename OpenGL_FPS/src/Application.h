@@ -6,12 +6,6 @@
 #include <SDL_ttf.h>
 #include <vector>
 
-#include "Camera.h"
-
-#include "StateManager.h"
-#include "ResourceManager.h"
-#include "Renderer.h"
-
 class Application {
 private:
     bool running;                   //game loop
