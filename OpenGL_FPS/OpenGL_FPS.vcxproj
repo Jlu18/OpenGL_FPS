@@ -19,53 +19,50 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Box.cpp" />
     <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Camera.cpp" />
-    <ClCompile Include="src\Character.cpp" />
-    <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\Raycast.cpp" />
-    <ClCompile Include="src\Setting.cpp" />
-    <ClCompile Include="src\StateBase.cpp" />
-    <ClCompile Include="src\Square.cpp" />
-    <ClCompile Include="src\StateGame.cpp" />
-    <ClCompile Include="src\StateManager.cpp" />
-    <ClCompile Include="src\IndexBuffer.cpp" />
-    <ClCompile Include="src\Entity.cpp" />
-    <ClCompile Include="src\Renderer.cpp" />
-    <ClCompile Include="src\ResourceManager.cpp" />
-    <ClCompile Include="src\Shader.cpp" />
-    <ClCompile Include="src\stb.cpp" />
-    <ClCompile Include="src\Texture2D.cpp" />
-    <ClCompile Include="src\VertexArray.cpp" />
-    <ClCompile Include="src\VertexBuffer.cpp" />
+    <ClCompile Include="src\OpenGL\Buffer.cpp" />
+    <ClCompile Include="src\OpenGL\Mesh.cpp" />
+    <ClCompile Include="src\OpenGL\VertexArray.cpp" />
+    <ClCompile Include="src\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Resource\ResourceManager.cpp" />
+    <ClCompile Include="src\Resource\Setting.cpp" />
+    <ClCompile Include="src\Resource\Shader.cpp" />
+    <ClCompile Include="src\Resource\Texture2D.cpp" />
+    <ClCompile Include="src\State\BaseState.cpp" />
+    <ClCompile Include="src\State\GameState.cpp" />
+    <ClCompile Include="src\State\StateManager.cpp" />
+    <ClCompile Include="src\_stb\stb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
     <None Include="res\shader\Texture.shader" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Character.h" />
-    <ClInclude Include="src\Player.h" />
-    <ClInclude Include="src\Raycast.h" />
-    <ClInclude Include="src\Setting.h" />
-    <ClInclude Include="src\StateGame.h" />
-    <ClInclude Include="src\StateBase.h" />
-    <ClInclude Include="src\Entity.h" />
-    <ClInclude Include="src\Box.h" />
     <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\Camera.h" />
-    <ClInclude Include="src\IndexBuffer.h" />
-    <ClInclude Include="src\Renderer.h" />
-    <ClInclude Include="src\ResourceManager.h" />
-    <ClInclude Include="src\Shader.h" />
-    <ClInclude Include="src\Square.h" />
-    <ClInclude Include="src\StateManager.h" />
-    <ClInclude Include="src\Texture2D.h" />
+    <ClInclude Include="src\Entity\Component\Camera.h" />
+    <ClInclude Include="src\Entity\Component\Components.h" />
+    <ClInclude Include="src\Entity\Component\Player.h" />
+    <ClInclude Include="src\Entity\Component\Renderable.h" />
+    <ClInclude Include="src\Entity\Component\Transform.h" />
+    <ClInclude Include="src\Entity\Entity.h" />
+    <ClInclude Include="src\OpenGL\Mesh.h" />
+    <ClInclude Include="src\Resource\Setting.h" />
+    <ClInclude Include="src\OpenGL\Buffer.h" />
+    <ClInclude Include="src\Renderer\Primitive\Box.h" />
+    <ClInclude Include="src\Renderer\Primitive\Plane.h" />
+    <ClInclude Include="src\Renderer\Primitive\Square.h" />
+    <ClInclude Include="src\Renderer\Renderer.h" />
+    <ClInclude Include="src\Renderer\Renderer2D.cpp" />
+    <ClInclude Include="src\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\Resource\ResourceManager.h" />
+    <ClInclude Include="src\Resource\Shader.h" />
+    <ClInclude Include="src\Resource\Texture2D.h" />
+    <ClInclude Include="src\State\GameState.h" />
+    <ClInclude Include="src\State\BaseState.h" />
+    <ClInclude Include="src\State\StateManager.h" />
+    <ClInclude Include="src\OpenGL\VertexArray.h" />
+    <ClInclude Include="src\OpenGL\VertexBufferLayout.h" />
     <ClInclude Include="src\Util.h" />
-    <ClInclude Include="src\VertexArray.h" />
-    <ClInclude Include="src\VertexBuffer.h" />
-    <ClInclude Include="src\VertexBufferLayout.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -140,7 +137,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Library\cpp\stb\;D:\Library\cpp\glm;D:\Library\cpp\GLEW\include;D:\Library\cpp\SDL2-2.0.14\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;D:\Library\cpp\stb\;D:\Library\cpp\glm;D:\Library\cpp\GLEW\include;D:\Library\cpp\SDL2-2.0.14\include;$(SolutionDir)Dependencies\entt</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>

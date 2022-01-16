@@ -9,14 +9,8 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\Mesh">
-      <UniqueIdentifier>{9dfb5e42-2069-498d-ab56-2bcb8dc3239c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\State">
       <UniqueIdentifier>{9a94be51-a4da-4289-9632-e9cf255fa1d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Renderer">
-      <UniqueIdentifier>{05e67289-4e1a-4d63-b4f4-acaeb35a5720}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Resource">
       <UniqueIdentifier>{e1d75e56-88e8-4d86-abf9-9ab1b52f9399}</UniqueIdentifier>
@@ -31,150 +25,115 @@
     <Filter Include="Source Files\Entity">
       <UniqueIdentifier>{719d1e10-2763-47c9-b67f-0bd82f718eeb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Mesh">
-      <UniqueIdentifier>{73f65c1d-5dbe-4bbf-919f-1ef7f711b136}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Resource">
       <UniqueIdentifier>{fa2c546f-45fe-45e4-8748-16a82b4a548b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\State">
-      <UniqueIdentifier>{15708c7a-7b3c-4137-8980-ef243092d9d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\UI">
-      <UniqueIdentifier>{3da4b6d4-2906-4247-adca-2b51e863b6ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI">
-      <UniqueIdentifier>{5291e6bd-824a-462a-92c2-a3e47de06ea1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\_stb">
       <UniqueIdentifier>{51f82aef-53ef-4c74-b94e-cd250c8731cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{6f028283-5eb1-41f1-b7bb-8071351cdeb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL">
+      <UniqueIdentifier>{05e67289-4e1a-4d63-b4f4-acaeb35a5720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity\Component">
+      <UniqueIdentifier>{f53d1dbb-e88d-4add-85c6-b19f3e51abc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Primitive">
+      <UniqueIdentifier>{73f65c1d-5dbe-4bbf-919f-1ef7f711b136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL">
+      <UniqueIdentifier>{ac6c5a0d-dfd3-44f8-ab42-a18bb0a16e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{a265db19-423f-4da3-b4bd-bfddbeb9410b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity\Component">
+      <UniqueIdentifier>{179585a8-9923-4f49-bf0f-eba337a00b41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer">
+      <UniqueIdentifier>{088b4433-8651-4252-8750-082d05d678f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Primitive">
+      <UniqueIdentifier>{d2ce33fe-db01-44ec-b100-223ea83249a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entity.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\IndexBuffer.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="src\VertexArray.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="src\VertexBuffer.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Box.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Square.cpp">
-      <Filter>Source Files\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ResourceManager.cpp">
-      <Filter>Source Files\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Shader.cpp">
-      <Filter>Source Files\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StateGame.cpp">
-      <Filter>Source Files\State</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StateManager.cpp">
-      <Filter>Source Files\State</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StateBase.cpp">
-      <Filter>Source Files\State</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Camera.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Setting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>Source Files\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stb.cpp">
-      <Filter>Source Files\_stb</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Texture2D.cpp">
-      <Filter>Source Files\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Raycast.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Util.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\OpenGL\VertexArray.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGL\VertexBufferLayout.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGL\Buffer.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\State\BaseState.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="src\State\GameState.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="src\State\StateManager.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Primitive\Box.h">
+      <Filter>Header Files\Renderer\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Primitive\Plane.h">
+      <Filter>Header Files\Renderer\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Primitive\Square.h">
+      <Filter>Header Files\Renderer\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Renderer2D.h">
+      <Filter>Header Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resource\Shader.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Renderer.h">
+      <Filter>Header Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Renderer2D.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resource\Texture2D.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resource\ResourceManager.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resource\Setting.h">
+      <Filter>Header Files\Resource</Filter>
     </ClInclude>
     <ClInclude Include="src\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Box.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Square.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="src\VertexArray.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="src\VertexBuffer.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="src\VertexBufferLayout.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="src\IndexBuffer.h">
-      <Filter>Header Files\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="src\StateBase.h">
-      <Filter>Header Files\State</Filter>
-    </ClInclude>
-    <ClInclude Include="src\StateManager.h">
-      <Filter>Header Files\State</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Renderer.h">
-      <Filter>Header Files\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Shader.h">
-      <Filter>Header Files\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ResourceManager.h">
-      <Filter>Header Files\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entity.h">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\StateGame.h">
-      <Filter>Header Files\State</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Camera.h">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character.h">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Player.h">
-      <Filter>Header Files\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Setting.h">
+    <ClInclude Include="src\Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Texture2D.h">
-      <Filter>Header Files\Resource</Filter>
+    <ClInclude Include="src\Entity\Component\Camera.h">
+      <Filter>Header Files\Entity\Component</Filter>
     </ClInclude>
-    <ClInclude Include="src\Raycast.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Entity\Component\Components.h">
+      <Filter>Header Files\Entity\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Component\Transform.h">
+      <Filter>Header Files\Entity\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Entity.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Component\Renderable.h">
+      <Filter>Header Files\Entity\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OpenGL\Mesh.h">
+      <Filter>Header Files\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Component\Player.h">
+      <Filter>Header Files\Entity\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -184,5 +143,46 @@
     <None Include="res\shader\Texture.shader">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\State\BaseState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State\GameState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGL\Buffer.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGL\Mesh.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Renderer.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resource\ResourceManager.cpp">
+      <Filter>Source Files\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resource\Setting.cpp">
+      <Filter>Source Files\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resource\Shader.cpp">
+      <Filter>Source Files\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State\StateManager.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\_stb\stb.cpp">
+      <Filter>Source Files\_stb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resource\Texture2D.cpp">
+      <Filter>Source Files\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGL\VertexArray.cpp">
+      <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
