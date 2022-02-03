@@ -54,7 +54,7 @@ bool Application::OnInit() {
         std::cout << "Warning: Unable to set VSync! SDL Error: " <<  SDL_GetError() << std::endl;
     }
 
-    SDL_SetRelativeMouseMode((SDL_bool)focus);
+    //SDL_SetRelativeMouseMode((SDL_bool)focus);
 
     StateManager::Init();
 
