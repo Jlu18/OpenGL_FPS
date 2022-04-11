@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Camera.h"
-#include "Transform.h"
-
+#include "ECS/Component/Camera.h"
+#include "ECS/Component/Transform.h"
 
 struct Player {
-
 	glm::vec3 velocity = {};
 	float speed = 0.2f;
+
 	void Move(Transform& transform,const Camera& cam) {
 		transform.Translate(velocity.z * cam.front * speed);
 		transform.Translate(velocity.x * glm::cross(cam.front, cam.up) * speed);

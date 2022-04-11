@@ -1,4 +1,5 @@
-#include "Raycast.h"
+#include "Component/Raycast.h"
+
 namespace Ray {
 	/*
 		From "An Efficientand Robust Ray-Box Intersection Algorithm"

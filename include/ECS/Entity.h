@@ -1,7 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <entt.hpp>
+#include <entt/entt.hpp>
 
 #include "State/BaseState.h"
 

@@ -1,15 +1,13 @@
-#pragma once
-
 #include "GameState.h"
 
 #include "Renderer/Renderer.h"
 #include "Resource/ResourceManager.h"
 #include "Resource/Setting.h"
-#include "Entity/Component/Components.h" 
+#include "ECS/Component/Components.h" 
 
 #include <iostream>
 #include <stdio.h>
-#include "glm/gtx/string_cast.hpp"
+#include <glm/gtx/string_cast.hpp>
 
 void GameState::Init()
 {

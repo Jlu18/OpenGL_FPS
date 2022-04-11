@@ -13,22 +13,22 @@ glew:
 glm:
 	https://github.com/g-truc/glm
 	
-stb_image:
+std: stb_image:
 	https://github.com/nothings/stb
 
 ## References and resources
+Learn OpenGL
+	https://learnopengl.com/
 
-OpenGL Game by Chr157i4n: help me alot with how to structure the code base
-	https://github.com/Chr157i4n/OpenGL_Game
-	
 OpenGL Tutorial by The Cherno
 	https://youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
 	
 OpenGL Tutorial by ThinMatrix
 	https://www.youtube.com/user/ThinMatrix
+
+OpenGL Game by Chr157i4n
+	https://github.com/Chr157i4n/OpenGL_Game
 	
-Learn OpenGL
-	https://learnopengl.com/
 	
 ### Papers
 An efficient and robust ray-box intersection algorithm

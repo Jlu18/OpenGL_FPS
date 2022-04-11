@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity/Component/Components.h"
+#include "ECS/Component/Components.h"
 #include "OpenGL/Mesh.h"
 
 //purely for rendering a passed mesh with transformation, material, etc.

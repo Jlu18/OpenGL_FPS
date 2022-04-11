@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 #include <glm/vec2.hpp>
-#include <entt.hpp>
+#include <entt/entt.hpp>
 
 //http://gamedevgeek.com/tutorials/managing-game-states-in-c/
 class BaseState {
