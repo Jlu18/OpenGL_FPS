@@ -58,6 +58,9 @@
     <Filter Include="Header Files\Renderer\Primitive">
       <UniqueIdentifier>{d2ce33fe-db01-44ec-b100-223ea83249a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\shader">
+      <UniqueIdentifier>{5d4a22c3-08e1-47c1-aac4-84035a45ac06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\OpenGL\VertexArray.h">
@@ -135,13 +138,22 @@
     <ClInclude Include="src\Entity\Component\Player.h">
       <Filter>Header Files\Entity\Component</Filter>
     </ClInclude>
+    <ClInclude Include="src\Resource\Model.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Component\Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shader\3D.shader">
+      <Filter>Resource Files\shader</Filter>
+    </None>
     <None Include="res\shader\Basic.shader">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\shader</Filter>
     </None>
     <None Include="res\shader\Texture.shader">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\shader</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +195,9 @@
     </ClCompile>
     <ClCompile Include="src\OpenGL\VertexArray.cpp">
       <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resource\Model.cpp">
+      <Filter>Source Files\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@
     <ClCompile Include="src\OpenGL\Mesh.cpp" />
     <ClCompile Include="src\OpenGL\VertexArray.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Resource\Model.cpp" />
     <ClCompile Include="src\Resource\ResourceManager.cpp" />
     <ClCompile Include="src\Resource\Setting.cpp" />
     <ClCompile Include="src\Resource\Shader.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="src\_stb\stb.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shader\3D.shader" />
     <None Include="res\shader\Basic.shader" />
     <None Include="res\shader\Texture.shader" />
   </ItemGroup>
@@ -41,11 +43,13 @@
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Entity\Component\Camera.h" />
     <ClInclude Include="src\Entity\Component\Components.h" />
+    <ClInclude Include="src\Entity\Component\Light.h" />
     <ClInclude Include="src\Entity\Component\Player.h" />
     <ClInclude Include="src\Entity\Component\Renderable.h" />
     <ClInclude Include="src\Entity\Component\Transform.h" />
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\OpenGL\Mesh.h" />
+    <ClInclude Include="src\Resource\Model.h" />
     <ClInclude Include="src\Resource\Setting.h" />
     <ClInclude Include="src\OpenGL\Buffer.h" />
     <ClInclude Include="src\Renderer\Primitive\Box.h" />
@@ -137,7 +141,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;D:\Library\cpp\stb\;D:\Library\cpp\glm;D:\Library\cpp\GLEW\include;D:\Library\cpp\SDL2-2.0.14\include;$(SolutionDir)Dependencies\entt</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\assimp-5.0.1\include;$(SolutionDir)Dependencies\entt;$(SolutionDir)Dependencies\glew-2.1.0\include;$(SolutionDir)Dependencies\glm;$(SolutionDir)Dependencies\SDL2-2.0.20\include;$(SolutionDir)Dependencies\stb</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -145,8 +149,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Library\cpp\SDL2-2.0.14\lib\x86;D:\Library\cpp\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\assimp-5.0.1\lib\Debug;$(SolutionDir)Dependencies\SDL2-2.0.20\lib\x86;$(SolutionDir)Dependencies\glew-2.1.0\lib\Release\Win32</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;SDL2main.lib;assimp-vc142-mtd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -175,13 +179,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\assimp-5.0.1\include;$(SolutionDir)Dependencies\entt;$(SolutionDir)Dependencies\glew-2.1.0\include;$(SolutionDir)Dependencies\glm;$(SolutionDir)Dependencies\SDL2-2.0.20\include;$(SolutionDir)Dependencies\stb</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2019;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\assimp-5.0.1\lib\Debug;$(SolutionDir)Dependencies\glew-2.1.0\lib\Release\x64;$(SolutionDir)Dependencies\SDL2-2.0.20\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;SDL2main.lib;assimp-vc142-mtd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

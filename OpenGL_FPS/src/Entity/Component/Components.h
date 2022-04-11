@@ -5,3 +5,4 @@
 #include "Camera.h"
 #include "Renderable.h"
 #include "Player.h"
+#include "Light.h"
