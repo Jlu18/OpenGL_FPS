@@ -7,8 +7,16 @@
 #include <GL/glew.h>
 #include <stb_image.h>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 std::map<std::string, Shader*> ResourceManager::m_shaders;
 std::map<std::string, Texture2D*>ResourceManager::m_textures;
+std::map<std::string, Model*> ResourceManager::m_models;
+
+
+//TODO: Maybe return const since it shouldn't be modified outside of here
 
 /*
 	Shader Loaders
@@ -115,6 +123,43 @@ Texture2D* ResourceManager::GenerateTextureData(const std::string& filePath, boo
 	stbi_image_free(data);
 	return texture;
 }
+
+
+/*
+	Model Loader
+		
+*/
+Model* ResourceManager::LoadModel(std::string filePath, std::string name)
+{
+	Assimp::Importer importer;
+	const aiScene* scene = importer.ReadFile(filePath, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
+	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) 
+	{
+		std::cout << "ERROR::ASSIMP::" << importer.GetErrorString() << std::endl;
+		return nullptr;
+	}
+
+	Model* m = new Model();
+	m->ProcessNode(scene->mRootNode, scene);
+
+	if (m_models[name]) {
+		delete m_models[name];
+	}
+	
+	return m_models[name] = m;
+}
+
+Model* ResourceManager::GetModel(std::string name)
+{
+	if (HasModel(name)) {
+		return m_models[name];
+	}
+	else {
+		return nullptr;
+	}
+}
+
+
 
 /*
 	Other
