@@ -21,7 +21,7 @@ void GameState::Init()
 	const auto entt_player = registry.create();
 
 	Transform& transform = registry.emplace<Transform>(entt_player);
-	transform.position = glm::vec3(0.0f, 0.0f, -30.0f);
+	transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
 	transform.scale = { 1.0f, 1.0f, 1.0f };
 	transform.rotation = {0.0f, 0.0f, 0.0f };
 	registry.emplace<Player>(entt_player);
@@ -34,15 +34,16 @@ void GameState::Init()
 	camera.UpdateView(transform);
 	
 	//boxes
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 1; i++) {
 		const auto entity = registry.create();
 		Renderable& renderable = registry.emplace<Renderable>(entity);
-		renderable.texture = "bear";
-		renderable.color = glm::vec4(1.0f-(0.2/i), 0.5f - (0.05/i), 0.5f - (0.02/i), 1.0f);
+		//renderable.texture = "bear";
+		//renderable.color = glm::vec4(1.0f-(0.2/i), 0.5f - (0.05/i), 0.5f - (0.02/i), 1.0f);
+		renderable.color = glm::vec4(1.0f, 0.4f, 0.4f, 1.0f);
 		Transform& transform = registry.emplace<Transform>(entity);
-		transform.position = { i*5.f - 25.f, 0.f, -10.f };
-		transform.scale = { 1.0f, 1.0f, 1.0f};
-		transform.rotation = { 360.f / i, 0.0f, 0.0f };
+		transform.position = { 0, 0.f, 5.f };
+		transform.scale = { 2.0f, 2.0f, 2.0f};
+		transform.rotation = { 0.0f, 0.0f, 0.0f };
 	}
 
 	xrel = 0.0f;
@@ -125,7 +126,7 @@ void GameState::Update()
 
 		////Update camera view matrix
 		camera.UpdateView(transform);			   //Update View Matrix
-		std::cout << "\r" << glm::to_string(transform.position) << std::flush;
+		//std::cout << "\r" << glm::to_string(transform.position) << std::flush;
 	});
 
 	if (mousepress[1]) {
@@ -140,11 +141,11 @@ void GameState::Update()
 	}
 	//entities[0]->SetRotation(entities[0]->GetRotation() + glm::vec3{0.0f, 1.0f, 0.0f});
 
-	//auto view_drawables = registry.view<Renderable, Transform>();
-	//for (auto entt_drawable : view_drawables) {
-	//	auto &transform = view_drawables.get<Transform>(entt_drawable);
-	//	transform.rotation = transform.rotation + glm::vec3{ 1.0f, 0.0f, 0.0f };
-	//}
+	auto view_drawables = registry.view<Renderable, Transform>();
+	for (auto entt_drawable : view_drawables) {
+		auto &transform = view_drawables.get<Transform>(entt_drawable);
+		transform.rotation = transform.rotation + glm::vec3{ 0.0f, 1.0f, 0.0f };
+	}
 }
 
 void GameState::Draw()

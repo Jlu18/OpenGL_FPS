@@ -18,9 +18,6 @@ stb_image:
 
 ## References and resources
 
-OpenGL Game by Chr157i4n: help me alot with how to structure the code base
-	https://github.com/Chr157i4n/OpenGL_Game
-	
 OpenGL Tutorial by The Cherno
 	https://youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
 	
@@ -29,6 +26,8 @@ OpenGL Tutorial by ThinMatrix
 	
 Learn OpenGL
 	https://learnopengl.com/
+
+OpenGL Game by Chr157i4n: https://github.com/Chr157i4n/OpenGL_Game
 	
 ### Papers
 An efficient and robust ray-box intersection algorithm
