@@ -1,3 +1,4 @@
+#pragma once
 #include "Renderer.h"
 
 #include <GL/glew.h>
@@ -38,13 +39,12 @@ void Renderer::Init()
 	layout.Push<float>(3);
 	mesh->SetVertexArray(layout);
 
-
-
 	//model = ResourceManager::LoadModel("res/model/teapot.obj", "teapot");
 	
 	//Resource Loader
 	//r_data.shader = ResourceManager::LoadShader("res/shader/Basic.shader", "basic");
 	r_data.shader = ResourceManager::LoadShader("res/shader/3D.shader", "3D");
+	r_data.shader->SetVec4f("u_LightColor", glm::vec4(1.f, 1.f, 1.f, 1.0f));
 
 
 	GLCall(glViewport(0, 0, Setting::WIDTH, Setting::HEIGHT));
@@ -65,7 +65,7 @@ void Renderer::CleanUp()
 
 void Renderer::PreRender(const Camera& cam) {
 	r_data.shader->Bind();
-	r_data.shader->SetUniformMat4fv("u_ViewProjMatrix", cam.GetViewProjMatrix());
+	r_data.shader->SetMat4f("u_ViewProjMatrix", cam.GetViewProjMatrix());
 	
 	if (model) model->Bind();
 	else mesh->Bind();
@@ -77,12 +77,15 @@ void Renderer::PostRender() {
 	else mesh->Unbind();
 }
 
+void Renderer::SetLight(const Light& light, const Transform& transform) {
+	r_data.shader->SetVec3f("u_LightPos", transform.position);
+}
 
 //draw box only now
 void Renderer::Render(const Transform& transform, const Renderable& renderable)
 {
-	r_data.shader->SetUniform4fv("u_Color", renderable.color);
-	r_data.shader->SetUniformMat4fv("u_Matrix", transform.GetTransformMatrix());
+	r_data.shader->SetVec4f("u_Color", renderable.color);
+	r_data.shader->SetMat4f("u_Matrix", transform.GetTransformMatrix());
 
 	GLCall(glDrawElements(GL_TRIANGLES, mesh->GetCount(), GL_UNSIGNED_INT, nullptr));
 }

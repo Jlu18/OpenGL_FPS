@@ -72,18 +72,17 @@ void Shader::UnBind() const
     GLCall(glUseProgram(0));
 }
 
-void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
+void Shader::SetVec3f(const std::string& name, const glm::vec3& vector)
 {
-
-    GLCall(glUniform4f(GetUniformLocation(name), v0, v1, v2, v3));
+    GLCall(glUniform3fv(GetUniformLocation(name), 1, &vector[0]));
 }
 
-void Shader::SetUniform4fv(const std::string& name, glm::vec4 vector)
+void Shader::SetVec4f(const std::string& name, const glm::vec4& vector)
 {
     GLCall(glUniform4fv(GetUniformLocation(name), 1, &vector[0]));
 }
 
-void Shader::SetUniformMat4fv(const std::string name, glm::mat4 matrix)
+void Shader::SetMat4f(const std::string& name, const glm::mat4& matrix)
 {
     GLCall(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]));
 }

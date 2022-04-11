@@ -10,6 +10,7 @@ public:
 	static void CleanUp();
 
 	static void PreRender(const Camera& cam);
+	static void SetLight(const Light& light, const Transform& transform);
 	static void PostRender();
 	static void Clear(glm::vec3 bg);
 	static void Render(const Transform& transform, const Renderable& renderable);

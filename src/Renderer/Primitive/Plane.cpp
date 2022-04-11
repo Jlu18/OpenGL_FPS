@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Renderer/Primitive/Plane.h"
 #include "glm/gtc/matrix_transform.hpp"
 
