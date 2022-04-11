@@ -21,21 +21,32 @@ struct RenderData {
 
 static RenderData  r_data;
 Mesh* Renderer::mesh = nullptr;
+Model* model = nullptr;
 
 void Renderer::Init()
 {
 	//TEMP: Mesh (Box) init
 	mesh = new Mesh();
-	mesh->SetVertexBuffer(Box::verts, sizeof(float) * Box::v_count);
+	
+	//Pass Vertex and Index to the Buffers
+	mesh->SetVertexBuffer(Box::vertices, sizeof(float) * Box::v_count);
+	mesh->SetIndexBuffer(Box::indices, Box::i_count);
 
+
+	//Describe the layout of the vertex buffer (ie. 3 vertices and 3 normals)
 	VertexBufferLayout layout;
+	layout.Push<float>(3);
 	layout.Push<float>(3);
 	mesh->SetVertexArray(layout);
 
-	mesh->SetIndexBuffer(Box::indices, Box::i_count);
+
+
+	//model = ResourceManager::LoadModel("res/model/teapot.obj", "teapot");
 	
 	//Resource Loader
-	r_data.shader = ResourceManager::LoadShader("res/shader/Basic.shader", "basic");
+	//r_data.shader = ResourceManager::LoadShader("res/shader/Basic.shader", "basic");
+	r_data.shader = ResourceManager::LoadShader("res/shader/3D.shader", "3D");
+
 
 	GLCall(glViewport(0, 0, Setting::WIDTH, Setting::HEIGHT));
 	GLCall(glEnable(GL_DEPTH_TEST));
@@ -45,20 +56,26 @@ void Renderer::CleanUp()
 {
 	ResourceManager::Clear();
 	r_data.shader = nullptr;
+
 	delete mesh;
 	mesh = nullptr;
+
+	delete model;
+	model = nullptr;
 }
 
 void Renderer::PreRender(const Camera& cam) {
 	r_data.shader->Bind();
 	r_data.shader->SetUniformMat4fv("u_ViewProjMatrix", cam.GetViewProjMatrix());
-
-	mesh->Bind();
+	
+	if (model) model->Bind();
+	else mesh->Bind();
 }
 
 void Renderer::PostRender() {
 	r_data.shader->UnBind();
-	mesh->Unbind();
+	if (model) model->Unbind();
+	else mesh->Unbind();
 }
 
 

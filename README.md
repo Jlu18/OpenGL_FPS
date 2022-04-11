@@ -29,6 +29,11 @@ OpenGL Tutorial by ThinMatrix
 OpenGL Game by Chr157i4n
 	https://github.com/Chr157i4n/OpenGL_Game
 	
+Learn OpenGL
+	https://learnopengl.com/
+
+OpenGL Game by Chr157i4n: 
+	https://github.com/Chr157i4n/OpenGL_Game
 	
 ### Papers
 An efficient and robust ray-box intersection algorithm
