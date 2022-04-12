@@ -1,5 +1,4 @@
-#ifndef UTIL_H
-#define UTIL_H
+#pragma once
 
 #include <GL/glew.h>
 #include <iostream>
@@ -57,5 +56,4 @@ bool inline GLCheckError()
     ASSERT(GLCheckError())
 #else
 #define GLCall(x) x
-#endif
 #endif

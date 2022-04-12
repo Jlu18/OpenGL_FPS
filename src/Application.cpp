@@ -1,14 +1,13 @@
 #include "Application.h"
 
 #include <GL/glew.h>
-#include <SDL2/SDL_opengl.h>
-
+#include <SDL_opengl.h>
+#include <SDL_keycode.h>
 
 #include <string>
 #include <iostream>
 
 #include "State/StateManager.h"
-
 
 Application::Application() : running(false),focus(true), window(NULL), context(NULL) {
     lastTime = currentTime = 0;
@@ -113,7 +112,7 @@ int Application::OnExecute() {
                 running = false;
                 break;
             }
-            else if (Event.type == SDL_KEYDOWN && Event.key.keysym.sym == SDL_KeyCode::SDLK_ESCAPE) {
+            else if (Event.type == SDL_KEYDOWN && Event.key.keysym.sym == SDLK_ESCAPE) {
                 focus = !focus;
                 SDL_SetRelativeMouseMode((SDL_bool)focus);
             }

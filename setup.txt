@@ -1,6 +1,6 @@
 Windows:
 
-Linux:
+Linux (Ubuntu/Debian):
     install SDL2
         sudo apt-get install build-essential git make cmake autoconf automake \
             libtool pkg-config libasound2-dev libpulse-dev libaudio-dev libjack-dev \
@@ -14,3 +14,6 @@ Linux:
 
     install glew
         sudo apt install libglew-dev
+
+    install assimp
+        sudo apt-get install libassimp-dev

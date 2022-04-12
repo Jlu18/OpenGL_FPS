@@ -1,3 +1,5 @@
+#ECS CMake
+
 set(ECS_HEADERS
     ${PROJECT_SOURCE_DIR}/include/ECS/Entity.h
     ${PROJECT_SOURCE_DIR}/include/ECS/Component/Camera.h
@@ -8,7 +10,6 @@ set(ECS_HEADERS
     ${PROJECT_SOURCE_DIR}/include/ECS/Component/Transform.h
 )
 
-#Create "ecs" library/target based on cpp files
 set(ECS_SOURCES
     Entity.cpp
     Component/Player.cpp
@@ -20,7 +21,11 @@ add_library(ecs
     ${ECS_SOURCES}
 )
 
-#Add include directories to the target(opengl)
+target_link_libraries(ecs
+    PRIVATE
+    state
+)
+
 target_include_directories(ecs
     PUBLIC
     ${PROJECT_SOURCE_DIR}/include

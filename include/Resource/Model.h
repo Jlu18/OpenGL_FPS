@@ -1,7 +1,7 @@
 #pragma once
 
-#include <OpenGL/Mesh.h>
 #include <assimp/scene.h>
+#include "OpenGL/Mesh.h"
 
 class Model {
 	std::vector<Mesh*>meshes;

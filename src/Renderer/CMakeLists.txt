@@ -1,4 +1,5 @@
-#Renderer CMake File
+#Renderer CMake
+
 set(PRIMITIVE_HEADERS
     ${PROJECT_SOURCE_DIR}/include/Renderer/Primitive/Box.h
     ${PROJECT_SOURCE_DIR}/include/Renderer/Primitive/Plane.h

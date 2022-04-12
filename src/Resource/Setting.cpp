@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Resource/Setting.h"
 
 #include <SDL_keycode.h>

@@ -1,5 +1,4 @@
-#ifndef VERTEX_ARRAY_H
-#define VERTEX_ARRAY_H
+#pragma once
 
 #include "OpenGL/Buffer.h"
 #include "OpenGL/VertexBufferLayout.h"
@@ -15,5 +14,3 @@ public:
 	void Bind() const;
 	void Unbind() const; 
 };
-
-#endif

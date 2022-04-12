@@ -15,8 +15,16 @@ add_library(state
     ${STATE_SOURCES}
 )
 
+target_link_libraries(state
+    PUBLIC
+    resource
+    renderer
+    ${SDL2_LIBRARIES}
+)
+
 target_include_directories(state
     PUBLIC
+    ${SDL2_INCLUDE_DIRS}
     ${PROJECT_SOURCE_DIR}/include/
     ${PROJECT_SOURCE_DIR}/include/State
 )

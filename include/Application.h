@@ -1,5 +1,5 @@
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#pragma once
+
 #define SDL_MAIN_HANDLED
 
 #include <SDL.h>
@@ -33,5 +33,3 @@ public:
     void OnRender();
     void OnCleanUp();
 };
-
-#endif

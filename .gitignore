@@ -9,7 +9,6 @@ include/glm/
 
 #Projects
 Dependencies/
-OpenGL_FPS/src/trash
 build/
 
 # User-specific files
